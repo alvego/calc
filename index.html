@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+   <title>Калькулятор</title>
+   <meta charset="utf-8">
+   <style>
+    #main {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+      border: 1px dotted gray;
+      font-size: 26px;
+      user-select: none;
+    }
+
+    button {
+      font-size: 26px;
+    }
+
+    #screen {
+      display: flex;
+      text-align: right;
+    }
+
+    #screen > button {
+      margin-left: 5px;
+    }
+
+    #value {
+      border:1px solid gray;
+      background-color: lightblue;
+      font-weight: bold;
+      flex: 1;
+      padding: 5px;
+      user-select: auto;
+    }
+
+    #keyboard {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    #keyboard > div {
+      display: flex;
+      flex: 1;
+      margin-top: 5px;
+      gap: 0 5px;
+    }
+
+    #keyboard > div > button {
+      flex: 1;
+    }
+   </style>
+ </head>
+ <body>
+	<div id="main">
+    <div id="screen"><span id="value">0</span><button>CE</button></div>
+
+    <div id="keyboard">
+      <div>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>/</button>
+      </div>
+      <div>
+        <button>6</button>
+        <button>5</button>
+        <button>4</button>
+        <button>*</button>
+      </div>
+      <div>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>-</button>
+      </div>
+      <div>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+        <button>+</button>
+      </div>
+    </div>
+
+	</div>
+  <script>
+
+
+    var previousValue = 0;
+    var lastOperatorValue = 0;
+    var lastOperator = '';
+    var currentOperator = '';
+    var operatorFlag = false;
+
+    function onButtonClick(event) {
+      var btn = event.target.innerHTML;
+      var valueElement = document.getElementById('value');
+      var value = valueElement.innerHTML;
+
+      if (isDigit(btn)) {
+        if (value === '0' || operatorFlag) {
+          value = btn;
+          operatorFlag = false;
+        } else {
+          value = value + btn;
+        }
+      } else {
+        if (btn === '.') {
+          if (operatorFlag) {
+            value = '0.';
+            operatorFlag = false;
+          } else if (!value.includes(btn)) {
+            value = value + btn;
+          }
+        }
+        if (btn === 'CE') {
+          value = '0';
+          currentOperator = '';
+          previousValue = 0;
+          lastOperator = '';
+          lastOperatorValue = 0;
+        }
+        if (isOperator(btn)) {
+          if (currentOperator !== '') {
+            value = calc(value);
+          }
+          currentOperator = btn;
+          previousValue = parseFloat(value);
+          operatorFlag = true;
+        }
+        if (btn === '=') {
+          value = calc(value);
+        }
+
+      }
+      valueElement.innerHTML = value;
+    }
+
+    function calc(value) {
+      operatorFlag = true;
+      var prevValue = previousValue;
+      var currValue = parseFloat(value);
+      if (lastOperator === currentOperator) {
+        prevValue = currValue;
+        currValue = lastOperatorValue;
+      }
+      switch (currentOperator) {
+        case '+':
+          value = prevValue + currValue;
+          break
+        case '-':
+          value = prevValue - currValue;
+          break
+        case '*':
+          value = prevValue * currValue;
+          break
+        case '/':
+          value = prevValue / currValue;
+          break;
+        default:
+          break;
+      }
+      if (currentOperator !== lastOperator) {
+        lastOperator = currentOperator;
+        lastOperatorValue = currValue;
+      }
+      return value;
+    }
+
+    var digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    function isDigit(btn) {
+      return digits.includes(btn);
+    }
+
+    var operators = ['+', '-', '/', '*'];
+    function isOperator(btn) {
+      return operators.includes(btn);
+    }
+
+    var buttons = document.getElementsByTagName('button');
+    let touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+    for (var i = 0; i < buttons.length; i = i + 1) {
+      var btn = buttons[i];
+      btn.addEventListener(touchEvent, onButtonClick);
+    }
+
+  </script>
+ </body>
+</html>
