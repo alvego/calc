@@ -13,8 +13,9 @@
     #main {
       display: flex;
       flex-direction: column;
-      width: 90%;
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
+      padding: 0;
       height: 100%;
       box-sizing: border-box;
       border: 1px solid gray;
@@ -39,6 +40,9 @@
     }
 
     #value {
+      direction: rtl;
+      text-overflow: ellipsis;
+      overflow: hidden;
       font-size: min(10vw, 10vh);
       border-radius: min(2vw, 2vh);
       font-family: monospace;
