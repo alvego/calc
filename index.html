@@ -17,7 +17,6 @@
       margin: 0 auto;
       height: 100%;
       box-sizing: border-box;
-      padding: 10px;
       border: 1px solid gray;
       background-color: lightskyblue;
       user-select: none;
@@ -25,21 +24,23 @@
 
     button {
       font-family: monospace;
-      font-size: min(10vw, 10vh);
-      border-radius: min(5vw, 5vh);
+      font-size: min(5vw, 5vh);
+      border-radius: min(2vw, 2vh);
     }
 
     #screen {
       display: flex;
       text-align: right;
+      margin: min(4vw, 4vh) min(2vw, 2vh) min(2vw, 2vh);
     }
 
     #screen > button {
-      margin-left: min(5vw, 5vh);
+      margin-left: min(4vw, 4vh);
     }
 
     #value {
       font-size: min(10vw, 10vh);
+      border-radius: min(2vw, 2vh);
       font-family: monospace;
       border:1px solid gray;
       background-color: lightblue;
@@ -53,20 +54,18 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      width: 100%;
       overflow: hidden;
     }
     #keyboard > div {
-      width: 100%;
       overflow: hidden;
       display: flex;
       flex: 1;
-      margin-top: min(5vw, 5vh);
-      gap: 0 min(5vw, 5vh);
+      margin: min(2vw, 2vh) 0;
     }
 
     #keyboard > div > button {
       flex: 1;
+      margin: 0 min(2vw, 2vh);
     }
 
     .red {
