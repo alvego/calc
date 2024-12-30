@@ -41,7 +41,7 @@
     }
 
     #value {
-      direction: rtl;
+      text-align: right;
       text-overflow: ellipsis;
       overflow: hidden;
       font-size: min(10vw, 10vh);
@@ -130,7 +130,7 @@
     function onButtonClick(event) {
       var btn = event.target.innerHTML;
       var valueElement = document.getElementById('value');
-      var value = valueElement.innerHTML;
+      var value = valueElement.innerHTML.replace('…', '');
 
       if (isDigit(btn)) {
         if (value === '0' || operatorFlag) {
@@ -168,7 +168,13 @@
         }
 
       }
-      valueElement.innerHTML = ('' + value).slice(0, 12) ;
+
+      var strValue = ('' + value);
+      if (value.length > 12) {
+        value = ('' + value).slice(0, 12) + '…';
+      }
+
+      valueElement.innerHTML = value;
     }
 
     function calc(value) {
