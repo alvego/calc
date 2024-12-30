@@ -168,7 +168,7 @@
         }
 
       }
-      valueElement.innerHTML = value;
+      valueElement.innerHTML = ('' + value).slice(0, 12) ;
     }
 
     function calc(value) {
