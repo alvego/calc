@@ -3,6 +3,7 @@
  <head>
    <title>Калькулятор</title>
    <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
    <style>
     html, body {
       margin: 0;
@@ -22,6 +23,7 @@
 
     button {
       font-size: 5vh;
+      border-radius: 5vw;
     }
 
     #screen {
@@ -30,7 +32,7 @@
     }
 
     #screen > button {
-      margin-left: 5px;
+      margin-left: 1vw;
     }
 
     #value {
@@ -50,8 +52,8 @@
     #keyboard > div {
       display: flex;
       flex: 1;
-      margin-top: 5px;
-      gap: 0 5px;
+      margin-top: 1vw;
+      gap: 0 1vw;
     }
 
     #keyboard > div > button {
@@ -186,10 +188,9 @@
     }
 
     var buttons = document.getElementsByTagName('button');
-    let touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
     for (var i = 0; i < buttons.length; i = i + 1) {
       var btn = buttons[i];
-      btn.addEventListener(touchEvent, onButtonClick);
+      btn.addEventListener('click', onButtonClick);
     }
 
   </script>
