@@ -4,21 +4,24 @@
    <title>Калькулятор</title>
    <meta charset="utf-8">
    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     #main {
       display: flex;
       flex-direction: column;
-      width: 400px;
-      height: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      height: 100%;
+      box-sizing: border-box;
       padding: 10px;
       border: 1px dotted gray;
-      font-size: 26px;
+      font-size: 5vh;
       user-select: none;
     }
 
     button {
-      font-size: 26px;
+      font-size: 5vh;
     }
 
     #screen {
