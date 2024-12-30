@@ -198,6 +198,10 @@
       btn.addEventListener('click', onButtonClick);
     }
 
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
   </script>
  </body>
 </html>
