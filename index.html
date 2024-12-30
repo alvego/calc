@@ -54,7 +54,7 @@
       overflow: hidden;
     }
     #keyboard > div {
-      width: 100%;
+      overflow: hidden;
       display: flex;
       flex: 1;
       margin-top: 1vw;
@@ -64,36 +64,48 @@
     #keyboard > div > button {
       flex: 1;
     }
+
+    .red {
+      background-color: lightcoral;
+    }
+
+    .green {
+      background-color: lightgreen;
+    }
+
+    .gold {
+      background-color: lightgoldenrodyellow;
+    }
    </style>
  </head>
  <body>
 	<div id="main">
-    <div id="screen"><span id="value">0</span><button>CE</button></div>
+    <div id="screen"><span id="value">0</span><button class="red">CE</button></div>
 
     <div id="keyboard">
       <div>
         <button>7</button>
         <button>8</button>
         <button>9</button>
-        <button>/</button>
+        <button class="gold">/</button>
       </div>
       <div>
         <button>6</button>
         <button>5</button>
         <button>4</button>
-        <button>*</button>
+        <button class="gold">*</button>
       </div>
       <div>
         <button>1</button>
         <button>2</button>
         <button>3</button>
-        <button>-</button>
+        <button class="gold">-</button>
       </div>
       <div>
         <button>0</button>
         <button>.</button>
-        <button>=</button>
-        <button>+</button>
+        <button class="green">=</button>
+        <button class="gold">+</button>
       </div>
     </div>
 
